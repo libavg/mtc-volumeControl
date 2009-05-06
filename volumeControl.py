@@ -16,7 +16,7 @@
 # along with appChooser.  If not, see <http://www.gnu.org/licenses/>.
 
 from libavg import avg, Point2D, eventList
-from libavg import AVGMTAppStarter, AVGAppStarter, AVGApp
+from libavg import AVGApp
 from libavg.AVGAppUtil import getMediaDir
 
 import alsaaudio
@@ -71,6 +71,7 @@ class Slider(object):
         self.__onChange(val)
 
 class VolumeControl(AVGApp):
+    multitouch = True
     def __init__(self, parentNode):
         parentNode.mediadir = getMediaDir(__file__)
 
@@ -133,6 +134,6 @@ class VolumeControl(AVGApp):
         self.__schieber.setValue(1 - (volume/100))
 
 if __name__ == '__main__':
-    AVGMTAppStarter(appClass = VolumeControl, resolution = Point2D(1280,720))
+    VolumeControl.start(resolution = (1280,720))
 
 
