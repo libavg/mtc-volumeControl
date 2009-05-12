@@ -72,13 +72,13 @@ class Slider(object):
 
 class VolumeControl(AVGApp):
     multitouch = True
-    def __init__(self, parentNode):
-        parentNode.mediadir = getMediaDir(__file__)
+    def init(self):
+        self._parentNode.mediadir = getMediaDir(__file__)
 
         bgNode = g_player.createNode('image', {
             'href': "bgpixel.png"})
-        bgNode.size = parentNode.size
-        parentNode.appendChild(bgNode)
+        bgNode.size = self._parentNode.size
+        self._parentNode.appendChild(bgNode)
 
         self.__mixer = alsaaudio.Mixer()
         def setVolume(val):
@@ -86,13 +86,13 @@ class VolumeControl(AVGApp):
             self.__mixer.setvolume(int(100 * val))
 
         schieberWidth = 100
-        self.__schieber = Slider(parentNode,
+        self.__schieber = Slider(self._parentNode,
                 pos = Point2D(300,10),
                 onChange = setVolume)
 
         self.__audioNode = g_player.createNode('sound', {
             'href': os.path.join(getMediaDir(__file__), 'test.wav')})
-        parentNode.appendChild(self.__audioNode)
+        self._parentNode.appendChild(self.__audioNode)
         def onFinish():
             self.__isPlaying = False
         self.__audioNode.setEOFCallback(onFinish)
@@ -105,7 +105,7 @@ class VolumeControl(AVGApp):
             'size': 150,
 
             })
-        parentNode.appendChild(testNode)
+        self._parentNode.appendChild(testNode)
         #testNode.setEventHandler(avg.CURSORDOWN,
         #        avg.MOUSE | avg. TOUCH, self._onClickPlay)
         exitNode = g_player.createNode('words', {
@@ -115,7 +115,7 @@ class VolumeControl(AVGApp):
             'size': 150,
 
             })
-        parentNode.appendChild(exitNode)
+        self._parentNode.appendChild(exitNode)
         exitNode.setEventHandler(avg.CURSORDOWN,
                 avg.MOUSE | avg. TOUCH, lambda e: self.leave())
 
