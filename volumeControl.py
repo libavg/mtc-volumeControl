@@ -102,7 +102,7 @@ class VolumeControl(AVGApp):
             'text': 'VOLUME',
             'x': 600,
             'y': 50,
-            'size': 150,
+            'fontsize': 150,
 
             })
         self._parentNode.appendChild(testNode)
@@ -112,7 +112,7 @@ class VolumeControl(AVGApp):
             'text': 'EXIT',
             'x': 600,
             'y': 450,
-            'size': 150,
+            'fontsize': 150,
 
             })
         self._parentNode.appendChild(exitNode)
