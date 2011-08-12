@@ -17,7 +17,7 @@
 
 from libavg import avg, Point2D, eventList
 from libavg import AVGApp
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 import alsaaudio
 import os
